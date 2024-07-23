@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 export default function Home() {
   return (
     <div>
-      <Button variant="default" onClick={() => alert("done")}>Click me</Button>
+      <Button variant="default" onClick={() => alert("done")}>Click hello</Button>
     </div>
   );
 }
