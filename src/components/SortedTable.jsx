@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-// import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/outline";
 import _ from "lodash";
 import { CaretDown, CaretUp, DotsThreeVertical } from "phosphor-react/dist";
 import { Card } from "./ui/card";
@@ -50,7 +49,7 @@ const SortableTable = ({ columns, data }) => {
   return (
     <div className="overflow-x-auto">
       <Card className="max-h-80 overflow-y-auto">
-        <table className="min-w-full bg-white shadow rounded-lg">
+        <table className="min-w-full bg-white shadow rounded-lg custom-scrollbar">
           <thead className="bg-gray-100 border-b border-gray-200 sticky top-0 z-10">
             <tr>
               {columns.map((column) => (
@@ -92,6 +91,8 @@ const SortableTable = ({ columns, data }) => {
                 }
               >
                 {columns.map((column) => (
+
+                  
                   <td key={column.key} className="py-3 px-4 text-[12px] text-left ">
                     {column.key === "job" ? (
                       <div>
@@ -120,13 +121,10 @@ const SortableTable = ({ columns, data }) => {
                     <DotsThreeVertical size={20} />
                   </button>
                   {actionRow === index && (
-                    <div className="absolute right-0 mt-2 w-32 bg-white border rounded shadow-lg z-20">
+                    <div className="absolute text-sm right-0 mt-2 w-32 bg-white border rounded shadow-lg z-20">
                       <ul className="text-left">
                         <li className="py-2 px-4 hover:bg-gray-100 cursor-pointer">
-                          Edit
-                        </li>
-                        <li className="py-2 px-4 hover:bg-gray-100 cursor-pointer">
-                          Delete
+                          Apply
                         </li>
                         <li className="py-2 px-4 hover:bg-gray-100 cursor-pointer">
                           View

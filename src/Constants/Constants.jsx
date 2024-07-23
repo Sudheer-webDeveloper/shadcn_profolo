@@ -11,6 +11,8 @@ import manProfile from "../../public/manProfile.png";
 import femaleProfile from "../../public/femaleProfile.png";
 import postBy from "../../public/postBy.png";
 import post1 from "../../public/post1.png";
+import avathar1 from "../../public/avathar1.png";
+import avathar2 from "../../public/avathar2.png";
 
 export const sidebarView = [
   {
@@ -94,9 +96,9 @@ export const dummyData = [
   {
     id: "JB562",
     job: "Network Administrator",
-    status: "Active",
+    status: "Pending",
     postedBy: { name: "Gaurav", initials: "GA" },
-    postedOn: "25/06/24",
+    postedOn: "24/06/24",
     views: 38,
     clicks: 6,
   },
@@ -105,7 +107,7 @@ export const dummyData = [
     job: "Network Administrator",
     status: "Active",
     postedBy: { name: "Gaurav", initials: "GA" },
-    postedOn: "25/06/24",
+    postedOn: "23/06/24",
     views: 38,
     clicks: 6,
   },
@@ -114,7 +116,7 @@ export const dummyData = [
     job: "Network Administrator",
     status: "Active",
     postedBy: { name: "Gaurav", initials: "GA" },
-    postedOn: "25/06/24",
+    postedOn: "22/06/24",
     views: 38,
     clicks: 6,
   },
@@ -123,7 +125,43 @@ export const dummyData = [
     job: "Network Administrator",
     status: "Active",
     postedBy: { name: "Gaurav", initials: "GA" },
-    postedOn: "25/06/24",
+    postedOn: "21/06/24",
+    views: 38,
+    clicks: 6,
+  },
+  {
+    id: "JB572",
+    job: "Network Administrator",
+    status: "Active",
+    postedBy: { name: "Gaurav", initials: "GA" },
+    postedOn: "24/06/24",
+    views: 38,
+    clicks: 6,
+  },
+  {
+    id: "JB573",
+    job: "Network Administrator",
+    status: "Active",
+    postedBy: { name: "Gaurav", initials: "GA" },
+    postedOn: "23/06/24",
+    views: 38,
+    clicks: 6,
+  },
+  {
+    id: "JB574",
+    job: "Network Administrator",
+    status: "Active",
+    postedBy: { name: "Gaurav", initials: "GA" },
+    postedOn: "22/06/24",
+    views: 38,
+    clicks: 6,
+  },
+  {
+    id: "JB575",
+    job: "Network Administrator",
+    status: "Active",
+    postedBy: { name: "Gaurav", initials: "GA" },
+    postedOn: "21/06/24",
     views: 38,
     clicks: 6,
   },
@@ -132,8 +170,8 @@ export const dummyData = [
 export const columns = [
   { key: "id", label: "ID" },
   { key: "job", label: "Job" },
-  { key: "status", label: "Status" },
-  { key: "postedBy.name", label: "Posted By" }, // Handle nested property
+  // { key: "status", label: "Status" },  
+  { key: "postedBy.name", label: "Posted By" }, 
   { key: "postedOn", label: "Posted On" },
   { key: "views", label: "Views" },
   { key: "clicks", label: "Clicks" },
@@ -195,9 +233,9 @@ export const peopleYouMayKnow = [
   },
 ];
 
-const posts = [
+export const posts = [
   {
-    postedBy: postBy,
+    profileImg: postBy,
     personName: "Ethan Marques",
     work: "Product Designer at Dell Techno",
     timeAgo: "24m ago",
@@ -209,7 +247,7 @@ const posts = [
     postImage: post1,
   },
   {
-    postedBy: postBy,
+    profileImg: postBy,
     personName: "Ethan Marques",
     work: "Product Designer at Dell Techno",
     timeAgo: "24m ago",
@@ -220,4 +258,35 @@ const posts = [
     shares: "10",
     postImage: post1,
   },
+  {
+    profileImg: postBy,
+    personName: "Ethan Marques",
+    work: "Product Designer at Dell Techno",
+    timeAgo: "24m ago",
+    postDesc:
+      "Hello, I am looking for a new career opportunity and would appreciate your support. Thanks in advance for any contact recommendation, advice, or ",
+    likes: "20",
+    comments: "30",
+    shares: "10",
+    postImage: post1,
+  },
+  {
+    profileImg: postBy,
+    personName: "Ethan Marques",
+    work: "Product Designer at Dell Techno",
+    timeAgo: "24m ago",
+    postDesc:
+      "Hello, I am looking for a new career opportunity and would appreciate your support. Thanks in advance for any contact recommendation, advice, or ",
+    likes: "20",
+    comments: "30",
+    shares: "10",
+    postImage: post1,
+  },
+];
+
+export const recentFriends = [
+  { img: manProfile, name: "person1" },
+  { img: femaleProfile, name: "person2" },
+  { img: postBy, name: "person3" },
+  { img: avathar2, name: "person4" },
 ];

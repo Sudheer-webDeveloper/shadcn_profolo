@@ -14,29 +14,26 @@ const poppins = Poppins({
 
 export const metadata = {
   title: "Profolo",
-  description: "Apply job and get it ",
+  description: "Apply job and get it",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} font-sans`}>
+      <body className={`${poppins.variable} font-sans bg-sidebar custom-scrollbar`}>
         <StateContextProvider>
-          <main className="flex w-[100vw] h-[100vh] bg-sidebar">
-            <section>
-              {" "}
-              <Sidebar />{" "}
+          <main className="flex w-full h-screen overflow-hidden">
+            <section className="h-full w-[104px] bg-sidebar">
+              <Sidebar />
             </section>
             <section
-              className="bg-mainBg flex-1   
-          rounded-tl-3xl rounded-bl-3xl
-          px-8 py-2"
+              className="flex-1 bg-mainBg rounded-tl-3xl rounded-bl-3xl px-8 py-2 overflow-y-auto"
+              style={{ width: 'calc(100vw - 104px)' }}
             >
-              <section>
+              <section className="">
                 <Navbar />
               </section>
-
-              <section className="py-3  ">{children} </section>
+              <section className="">{children}</section>
             </section>
           </main>
         </StateContextProvider>

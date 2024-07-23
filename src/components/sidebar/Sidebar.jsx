@@ -11,7 +11,7 @@ const Sidebar = () => {
   const pathName = useStateContext()
 
   return (
-    <section className="h-full  w-[104px]  bg-sidebar flex flex-col gap-3  items-center ">
+    <section className="bg-sidebar h-full flex flex-col gap-3  items-center ">
       <section className="w-full border-b p-4 mx-auto border-b-[#8A8A8A] hover:border-b-[#6B6B6B] flex justify-center items-center">
         <span className=" text-2xl text-white ">
           {" "}

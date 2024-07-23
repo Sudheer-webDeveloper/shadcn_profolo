@@ -5,9 +5,9 @@ import Image from "next/image";
 
 const ArrayOfCards = ({ heading, data }) => {
     return (
-      <Card className="p-4 rounded-2xl w-full">
-        <CardTitle className="text-sm flex_between">
-          <span>{heading}</span>
+      <Card className="p-4 rounded-2xl w-full font-medium ">
+        <CardTitle className="text-sm flex_between ">
+          <span className="  tracking-normal" >{heading}</span>
           <span className="text-sidebar">View All</span>
         </CardTitle>
   
@@ -45,7 +45,7 @@ const ArrayOfCards = ({ heading, data }) => {
                   </div>
                 </div>
   
-                <span className="text-sm text-sidebar">Follow</span>
+                <span className="text-sm  text-sidebar">Follow</span>
               </div>
   
               {index !== data.length - 1 && (

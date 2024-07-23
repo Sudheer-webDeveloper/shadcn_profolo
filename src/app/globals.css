@@ -175,4 +175,44 @@
   .flex_between {
     @apply flex justify-between items-center;
   }
+
+
+  /* scrollbar */
+
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #a1a1a1;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 4px;
+  }
+  
+  /* Smooth scrolling */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #c1c1c1 #f1f1f1;
+  }
+  
+  .custom-scrollbar::-moz-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .custom-scrollbar::-moz-scrollbar-thumb:hover {
+    background-color: #a1a1a1;
+  }
 }
