@@ -14,8 +14,12 @@ module.exports = {
       screens: {
         "2xl": "1400px",
       },
+      
     },
     extend: {
+      fontFamily: {
+        sans: ['var(--font-poppins)'], // Use the CSS variable for font
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -50,7 +54,8 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        sidebar: "hsl(var(--sidebar))",
+        sidebar: "hsl(var(--sidebar))", // Sidebar color
+        mainBg: "rgb(94.9%, 94.9%, 94.9%)" // Custom color for main background
       },
       borderRadius: {
         lg: "var(--radius)",
