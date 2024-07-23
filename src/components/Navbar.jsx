@@ -1,12 +1,20 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaBell } from "react-icons/fa";
 import logo from "../../public/wta.png";
+import { Faders } from "phosphor-react/dist";
+import { GoHomeFill } from "react-icons/go";
+import { checkPath } from "@/Constants/Constants";
+import { useStateContext } from "@/contexts/StateContext";
 
 const Navbar = () => {
+  const {pathName,dummyUser} = useStateContext()
+  console.log(pathName,"pathname")
   return (
-    <header>
+    <header className="w-full flex flex-col gap-2">
       <nav className="flex w-full justify-between  items-center pr-2 ">
         <section className="flex gap-2 items-center ">
           <svg
@@ -84,6 +92,24 @@ const Navbar = () => {
           </div>
         </section>
       </nav>
+
+      <div className="flex justify-between my-3">
+        <span className="text-xl">
+          {" "}
+          {pathName.includes("/profile") ? <>
+
+          <h2
+
+          className="font-semibold text-2xl"
+          
+          
+          >Welcome to Profolo, {dummyUser?.name || "" } </h2>
+          </> : checkPath(pathName)}
+        </span>
+        <span className="pr-1">
+          <Faders size={20} />
+        </span>
+      </div>
     </header>
   );
 };

@@ -5,9 +5,10 @@ import { sidebarView } from "@/Constants/Constants";
 import Link from "next/link";
 import { TbGridDots } from "react-icons/tb";
 import { usePathname } from "next/navigation";
+import { useStateContext } from "@/contexts/StateContext";
 
 const Sidebar = () => {
-  const currentPath = usePathname();
+  const pathName = useStateContext()
 
   return (
     <section className="h-full  w-[104px]  bg-sidebar flex flex-col gap-3  items-center ">
@@ -24,7 +25,7 @@ const Sidebar = () => {
             href={item.href}
             key={item.label}
             className={`flex w-full justify-center items-center gap-1.5 flex-col text-white transition-all  ${
-              item.href === currentPath ? `border-l-[3px]  border-white` : ""
+              item.href === pathName.pathName ? `border-l-[3px]  border-white` : ""
             } `}
           >
             <span className="text-2xl mb-1 ">{item.icon}</span>

@@ -5,6 +5,12 @@ import { GoHomeFill } from "react-icons/go";
 import { IoBag, IoPeopleSharp } from "react-icons/io5";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { CalendarBlank, Users, Wallet } from "phosphor-react/dist";
+import logo from "../../public/wta.png";
+import toyota from "../../public/toyota.png";
+import manProfile from "../../public/manProfile.png";
+import femaleProfile from "../../public/femaleProfile.png";
+import postBy from "../../public/postBy.png";
+import post1 from "../../public/post1.png";
 
 export const sidebarView = [
   {
@@ -29,6 +35,21 @@ export const sidebarView = [
     href: "/chat",
   },
 ];
+
+export const checkPath = (pathName) => {
+  switch (pathName) {
+    case "/":
+      return <GoHomeFill />;
+    case "/jobs":
+      return <IoBag />;
+    case "/candidates":
+      return <IoPeopleSharp />;
+    case "/chat":
+      return <IoChatbubbleEllipsesOutline />;
+    default:
+      return null;
+  }
+};
 
 export const dashboardCards = [
   {
@@ -124,4 +145,79 @@ export const checkbox_verifications = [
   { label: "Share tech stack", name: "tech_stack", isOrg: true },
   { label: "Invite Co Workers", name: "co_workers", isOrg: false },
   { label: "Post a Job", name: "post_job", isOrg: true },
+];
+
+// Fake profile page data
+
+export const sugesstedFollows = [
+  {
+    img: logo,
+    company_name: "wipro",
+    desc: "design tech",
+  },
+  {
+    img: logo,
+    company_name: "WTA",
+    desc: "Service tech",
+  },
+  {
+    img: logo,
+    company_name: "facebook",
+    desc: "social media tech",
+  },
+];
+
+export const sugesstedJobs = [
+  {
+    img: logo,
+    designation: "UI/UX Designer",
+    company_name: "WTA Studios",
+  },
+  {
+    img: toyota,
+    designation: "Brand Designer",
+    company_name: "Toyota",
+  },
+];
+
+export const peopleYouMayKnow = [
+  {
+    img: femaleProfile,
+    name: "Kavitha Sinde",
+    institute: "Birla Institute of Technology",
+    yearZone: "2010 - 2014",
+  },
+  {
+    img: manProfile,
+    name: "Aryan Bhatt",
+    institute: "Birla Institute of Technology",
+    yearZone: "2012 - 2016",
+  },
+];
+
+const posts = [
+  {
+    postedBy: postBy,
+    personName: "Ethan Marques",
+    work: "Product Designer at Dell Techno",
+    timeAgo: "24m ago",
+    postDesc:
+      "Hello, I am looking for a new career opportunity and would appreciate your support. Thanks in advance for any contact recommendation, advice, or ",
+    likes: "20",
+    comments: "30",
+    shares: "10",
+    postImage: post1,
+  },
+  {
+    postedBy: postBy,
+    personName: "Ethan Marques",
+    work: "Product Designer at Dell Techno",
+    timeAgo: "24m ago",
+    postDesc:
+      "Hello, I am looking for a new career opportunity and would appreciate your support. Thanks in advance for any contact recommendation, advice, or ",
+    likes: "20",
+    comments: "30",
+    shares: "10",
+    postImage: post1,
+  },
 ];

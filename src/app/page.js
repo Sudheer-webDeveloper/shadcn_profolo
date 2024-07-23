@@ -6,80 +6,27 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Faders, MapPin } from "phosphor-react";
-import { GoHomeFill } from "react-icons/go";
-import profileImg from "../../public/verifiedProfile.png";
-import Image from "next/image";
 import { Progress } from "@/components/ui/progress";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  ArrowDownRight,
-  Plus,
-  WarningCircle,
-} from "phosphor-react/dist";
+import { ArrowDownRight, Plus, WarningCircle } from "phosphor-react/dist";
 import SortableTable from "@/components/SortedTable";
-import { dashboardCards,dummyData,columns,checkbox_verifications } from "@/Constants/Constants";
-
-const userInfo = {
-  name: "Sindhu Uppalapati",
-  city: "Hyderabad",
-  profile: "",
-  isVerified: true,
-  profileImg,
-  profileComplete: 33,
-};
-
-
-
-
-
-
+import {
+  dashboardCards,
+  dummyData,
+  columns,
+  checkbox_verifications,
+} from "@/Constants/Constants";
+import ProfileCard from "@/components/ProfileCard";
+import { useStateContext } from "@/contexts/StateContext";
 
 export default function Home() {
+  const { dummyUser } = useStateContext();
   return (
-    <section className="w-full flex-col flex gap-2 my-5">
-      <div className="flex justify-between ">
-        <span className="text-xl">
-          {" "}
-          <GoHomeFill />
-        </span>
-        <span>
-          <Faders size={20} />
-        </span>
-      </div>
-
-      <section className="flex gap-3 mt-4 ">
-        <section className="flex flex-col items-center gap-2 p-4 pt-0 min-w-[300px]  w-[296px]">
-          <div className="flex items-center justify-center gap-2 ">
-            <Image
-              alt={userInfo.name}
-              src={userInfo.profileImg}
-              width={80}
-              height={80}
-              className="object-contain"
-            />
-
-            <div className="flex-col flex items-start gap-[2px] ">
-              <span
-                className={`bg-[#DDF2E4] text-[#1AA94A] w-[60px] flex items-center justify-center text-[10px] p-1 rounded-sm  `}
-              >
-                {userInfo.isVerified ? "Verified" : "Un Verified"}
-              </span>
-              <p className="font-normal"> {userInfo.name} </p>
-              <p className="flex g-2 items-center justify-center text-sm ">
-                {" "}
-                <span className=" text-[#515151] mr-[1px] ">
-                  <MapPin size={15} />
-                </span>{" "}
-                {userInfo?.city}
-              </p>
-            </div>
-          </div>
-
-          <span className=" user_verified w-full text-center  px-2 py-1.5 text-[16px] rounded-sm  ">
-            Verification Report
-          </span>
-
+    <section className="w-full flex-col flex gap-2">
+      <section className="flex gap-3 ">
+        <section className="flex flex-col items-center gap-6 pt-0 min-w-[300px]  w-[296px]">
+          <ProfileCard userInfo={dummyUser} />
+          
           <Card className="w-full">
             <CardHeader className="p-2 py-3">
               <CardTitle className="text-xl">Organisation Info</CardTitle>
@@ -88,7 +35,7 @@ export default function Home() {
               </CardDescription>
             </CardHeader>
             <div className="p-2">
-              <Progress value={userInfo.profileComplete} className="" />
+              <Progress value={dummyUser.profileComplete} className="" />
             </div>
 
             <div className="p-2">
@@ -177,8 +124,10 @@ const DashboardTable = () => {
   return (
     <section className="flex gap-3 flex-col ">
       <div className="flex_between w-full">
-        <h6 className="flex_center gap-2">Job Postings 
-          <WarningCircle size={20} className="text-[#8A8A8A]" /> </h6>
+        <h6 className="flex_center gap-2">
+          Job Postings
+          <WarningCircle size={20} className="text-[#8A8A8A]" />{" "}
+        </h6>
 
         <Button
           variant="default"
@@ -190,17 +139,7 @@ const DashboardTable = () => {
       </div>
 
       <div className="w-full">
-
-        <SortableTable
-        
-
-        data={dummyData || []}
-        columns={columns}
-        
-        />
-
-
-
+        <SortableTable data={dummyData || []} columns={columns} />
       </div>
     </section>
   );
