@@ -14,11 +14,10 @@ module.exports = {
       screens: {
         "2xl": "1400px",
       },
-      
     },
     extend: {
       fontFamily: {
-        sans: ['var(--font-poppins)'], // Use the CSS variable for font
+        sans: ['var(--font-poppins)'], //CSS variable for font
       },
       colors: {
         border: "hsl(var(--border))",

@@ -49,7 +49,7 @@ const SortableTable = ({ columns, data }) => {
 
   return (
     <div className="overflow-x-auto">
-      <Card className="max-h-80 overflow-y-auto">
+      <Card className="max-h-90 overflow-y-auto">
         <table className="min-w-full bg-white shadow rounded-lg custom-scrollbar">
           <thead className="bg-gray-100 border-b border-gray-200 sticky top-0 z-10">
             <tr>

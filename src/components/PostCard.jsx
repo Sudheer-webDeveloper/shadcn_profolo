@@ -119,6 +119,7 @@ const PostCard = ({ post }) => {
             <Image
               src={item.img}
               alt={item.name}
+              key={item.name}
               height={40}
               width={40}
               className="inline-block h-7 w-7 rounded-full ring-2 ring-white"
