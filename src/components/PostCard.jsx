@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   ChatCenteredDots,
@@ -6,13 +8,23 @@ import {
   ShareNetwork,
   ThumbsUp,
 } from "phosphor-react/dist";
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "./ui/card";
 import { recentFriends } from "@/Constants/Constants";
 import { useStateContext } from "@/contexts/StateContext";
 
 const PostCard = ({ post }) => {
-  const {dummyUser} = useStateContext()
+  const { dummyUser } = useStateContext();
+  const [actionRow, setActionRow] = useState();
+
+  const toggleActionRow = (id) => {
+    if (actionRow === id) {
+      setActionRow(null);
+    } else {
+      setActionRow(id);
+    }
+  };
+
   return (
     <Card className="p-4 bg-white rounded-2xl flex flex-col gap-4 ">
       <div className="post_by flex justify-between">
@@ -35,12 +47,27 @@ const PostCard = ({ post }) => {
           </div>
         </div>
 
-        <button
-          // onClick={() => toggleActionRow(index)}
-          className=" hover:text-gray-900"
-        >
-          <DotsThreeVertical size={22} />
-        </button>
+        <div className="relative">
+          <button
+            onClick={() => toggleActionRow(post.post_id)}
+            className=" hover:text-gray-900"
+          >
+            <DotsThreeVertical size={22} />
+          </button>
+
+          {actionRow === post.post_id && (
+            <div className="absolute text-sm right-0 mt-2 w-32 bg-white border rounded shadow-lg z-20">
+              <ul className="text-left">
+                <li className="py-2 px-4 hover:bg-gray-100 cursor-pointer">
+                  Edit
+                </li>
+                <li className="py-2 px-4 hover:bg-gray-100 cursor-pointer">
+                  Delete
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
 
       <p className="text-sm w-full leading-6 text-[#515151]">

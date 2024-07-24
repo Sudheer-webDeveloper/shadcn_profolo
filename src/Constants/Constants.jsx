@@ -235,6 +235,7 @@ export const peopleYouMayKnow = [
 
 export const posts = [
   {
+    post_id:"123",
     profileImg: postBy,
     personName: "Ethan Marques",
     work: "Product Designer at Dell Techno",
@@ -247,6 +248,7 @@ export const posts = [
     postImage: post1,
   },
   {
+    post_id:"456",
     profileImg: postBy,
     personName: "Ethan Marques",
     work: "Product Designer at Dell Techno",
@@ -259,6 +261,7 @@ export const posts = [
     postImage: post1,
   },
   {
+    post_id:"406",
     profileImg: postBy,
     personName: "Ethan Marques",
     work: "Product Designer at Dell Techno",
@@ -271,6 +274,7 @@ export const posts = [
     postImage: post1,
   },
   {
+    post_id:"956",
     profileImg: postBy,
     personName: "Ethan Marques",
     work: "Product Designer at Dell Techno",

@@ -6,6 +6,7 @@ import { CaretDown, CaretUp, DotsThreeVertical } from "phosphor-react/dist";
 import { Card } from "./ui/card";
 
 const SortableTable = ({ columns, data }) => {
+    
   const [sortConfig, setSortConfig] = useState({
     key: "",
     direction: "ascending",
