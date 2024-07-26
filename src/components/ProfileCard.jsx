@@ -1,13 +1,14 @@
+import { useStateContext } from "@/contexts/StateContext";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { MapPin } from "phosphor-react/dist";
-const ProfileCard = ({ userInfo }) => {
+const ProfileCard = ({ userInfo, verifiedButton }) => {
   const router = useRouter();
-  console.log(userInfo, "user info");
+
   return (
-    <section className="flex flex-col gap-3 w-full">
+    <section className="flex flex-col gap-3   w-full">
       <div
-        className="flex_start gap-2 cursor-pointer "
+        className="flex_start items-center gap-2 cursor-pointer "
         onClick={() => router.push(`/profile/${userInfo.userId}`)}
       >
         <Image
@@ -18,12 +19,15 @@ const ProfileCard = ({ userInfo }) => {
           className="object-contain"
         />
 
-        <div className="flex-col flex items-start gap-[2px] ">
-          <span
-            className={`bg-[#DDF2E4] text-[#1AA94A] w-[60px] flex items-center justify-center text-[10px] p-1 rounded-sm  `}
-          >
-            {userInfo.isVerified ? "Verified" : "Un Verified"}
-          </span>
+        <div className="flex-col flex items-start  h-full justify-center gap-[2px] ">
+          {verifiedButton || (
+            <span
+              className={`bg-[#DDF2E4] text-[#1AA94A] w-[60px] flex items-center justify-center text-[10px] p-1 rounded-sm  `}
+            >
+              {userInfo.isVerified ? "Verified" : "Un Verified"}
+            </span>
+          )}
+
           <p className="font-normal"> {userInfo.name} </p>
           <p className="flex g-2 items-center justify-center text-sm ">
             {" "}
@@ -35,9 +39,11 @@ const ProfileCard = ({ userInfo }) => {
         </div>
       </div>
 
-      <span className=" user_verified w-full text-center py-1.5 text-[16px] rounded-sm  ">
-        Verification Report
-      </span>
+      {verifiedButton || (
+        <span className=" user_verified w-full text-center py-1.5 text-[16px] rounded-sm  ">
+          Verification Report
+        </span>
+      )}
     </section>
   );
 };

@@ -1,6 +1,6 @@
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/sidebar/Sidebar";
+import Sidebar, { MobileSidebar } from "@/components/sidebar/Sidebar";
 import Navbar from "@/components/Navbar";
 import { StateContextProvider } from "@/contexts/StateContext";
 
@@ -20,21 +20,27 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} font-sans bg-sidebar custom-scrollbar`}>
+      <body
+        className={`${poppins.variable} font-sans bg-sidebar custom-scrollbar`}
+      >
         <StateContextProvider>
           <main className="flex w-full h-screen overflow-hidden">
-            <section className="h-full w-[104px] bg-sidebar">
+            <section className="h-full w-[104px] bg-sidebar hidden lg:block  ">
               <Sidebar />
             </section>
             <section
-              className="flex-1 bg-mainBg rounded-tl-3xl rounded-bl-3xl px-8 py-2 overflow-y-auto"
-              style={{ width: 'calc(100vw - 104px)' }}
+              className="flex-1 bg-mainBg rounded-tl-3xl rounded-bl-3xl max-lg:rounded-none py-2 lg:px-8 px-2 overflow-y-auto"
+              style={{ width: "calc(100vw - 104px)" }}
             >
-              <section className="">
+              <section className=" w-full bg-mainBg max-lg:z-20  max-lg:fixed max-lg:top-0 max-lg:px-2">
                 <Navbar />
               </section>
-              <section className="">{children}</section>
+              <section className="max-lg:pt-[100px] max-sm:pt-[120px] max-lg:pb-[80px]">{children}</section>
             </section>
+
+            <footer className="w-full max-lg:fixed max-lg:block hidden max-lg:bottom-0 z-20">
+              <MobileSidebar />
+            </footer>
           </main>
         </StateContextProvider>
       </body>

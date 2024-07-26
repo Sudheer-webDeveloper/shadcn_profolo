@@ -9,12 +9,16 @@ import { Faders } from "phosphor-react/dist";
 import { GoHomeFill } from "react-icons/go";
 import { checkPath } from "@/Constants/Constants";
 import { useStateContext } from "@/contexts/StateContext";
+import PostModal from "./PostModal";
+import { List } from "lucide-react";
+
 
 const Navbar = () => {
-  const {pathName,dummyUser} = useStateContext()
-  console.log(pathName,"pathname")
+  const {pathName,dummyUser,postModal} = useStateContext()
+
   return (
-    <header className="w-full flex flex-col gap-2">
+    <>
+    <header className="w-full flex flex-col gap-2 ">
       <nav className="flex w-full justify-between  items-center pr-2 bg-mainBg  ">
         <section className="flex gap-2 items-center ">
           <svg
@@ -35,11 +39,11 @@ const Navbar = () => {
               fill="white"
             />
           </svg>
-          <span className=" text-[32px] text-sidebar ">Profolo</span>
+          <span className="text-[32px] max-lg:text-[25px] text-sidebar ">Profolo</span>
         </section>
 
         {/* search section */}
-        <section className="bg-white flex items-center justify-start w-[30rem] px-1 py-5 h-9 rounded-sm gap-2 ">
+        <section className="bg-white hidden lg:flex  items-center justify-start w-[30rem] px-1 py-5 h-9 rounded-sm gap-2 ">
           <label htmlFor="search" className="text-xl ml-1 text-[#515151] ">
             <CiSearch />{" "}
           </label>
@@ -52,7 +56,7 @@ const Navbar = () => {
         </section>
 
         {/* WTA studios section */}
-        <section className="flex items-center gap-2">
+        <section className="items-center hidden lg:flex  gap-2">
           <span className="mr-2.5 text-lg ">
             <FaBell />
           </span>
@@ -90,7 +94,12 @@ const Navbar = () => {
               </svg>
             </span>
           </div>
+
         </section>
+          <div className="lg:hidden flex ">
+          <List size={25} />
+          </div>
+
       </nav>
 
       <div className="flex justify-between my-3">
@@ -100,7 +109,7 @@ const Navbar = () => {
 
           <h2
 
-          className="font-medium text-2xl"
+          className="font-medium text-2xl max-lg:text-lg "
           
           
           >Welcome to Profolo, {dummyUser?.name || "" } </h2>
@@ -111,6 +120,13 @@ const Navbar = () => {
         </span>
       </div>
     </header>
+
+
+
+    {postModal && <PostModal />  }
+
+
+    </>
   );
 };
 

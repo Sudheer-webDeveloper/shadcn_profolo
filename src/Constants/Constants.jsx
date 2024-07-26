@@ -14,6 +14,9 @@ import post1 from "../../public/post1.png";
 import avathar1 from "../../public/avathar1.png";
 import avathar2 from "../../public/avathar2.png";
 
+
+export {postBy}
+
 export const sidebarView = [
   {
     label: "Home",

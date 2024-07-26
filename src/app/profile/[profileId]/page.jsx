@@ -1,11 +1,13 @@
 "use client";
+import React, { useState, useEffect } from "react";
 import ProfileCard from "@/components/ProfileCard";
 import { useStateContext } from "@/contexts/StateContext";
-import React, { useState, useEffect } from "react";
+import imageCompression from "browser-image-compression"; // Importing image compression library
+import { LinkPreview } from "react-link-preview";
 import { Card } from "@/components/ui/card";
 import {
   peopleYouMayKnow,
-  posts,
+  postBy,
   recentFriends,
   sugesstedFollows,
   sugesstedJobs,
@@ -17,19 +19,32 @@ import { FirstAidKit, Link } from "phosphor-react/dist";
 import PostCard from "@/components/PostCard";
 import { FakeSkeleton } from "@/app/page";
 import { Skeleton } from "@/components/ui/skeleton";
+import { X, Image as Kinder } from "lucide-react";
+import { makeNetworkCall } from "@/utilities/utils";
 
 const ProfileById = () => {
-  const { dummyUser } = useStateContext();
+  const { dummyUser, setPostModal, posts, fetchPostsData } = useStateContext();
   const [loading, setLoading] = useState(true);
 
+
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
+    const fetching = async () => {
+      try {
+        setLoading(true);
+        await fetchPostsData();
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetching();
   }, []);
 
   return (
     <section className="flex_start gap-6 mt-2 h-full ">
-      <div className="min-w-[300px] flex-col flex gap-6 sticky top-4 ">
+      <div className="min-w-[300px] max-xl:hidden flex-col flex gap-6 sticky top-4 ">
         {loading ? (
           <Skeleton className="bg-white w-full p-6">
             <FakeSkeleton />
@@ -52,7 +67,7 @@ const ProfileById = () => {
               Didn't find what you were looking for?
             </h2>
 
-            <Button variant="default" className="text-white w-[130px]">
+            <Button variant="default" className="text-white w-[130px] " aria-label="Contact Us">
               Contact Us
             </Button>
           </Card>
@@ -62,7 +77,6 @@ const ProfileById = () => {
       <div className="flex-1 flex flex-col gap-6 ">
         {loading ? (
           <Skeleton className="bg-white w-full p-6">
-            {/* <FakeSkeleton /> */}
             <div className="w-full flex flex-col gap-4">
               <Skeleton className="w-full h-16" />
 
@@ -73,11 +87,14 @@ const ProfileById = () => {
             </div>
           </Skeleton>
         ) : (
-          <Card className="p-6 flex flex-col gap-4">
+          <Card
+            className="p-6 flex flex-col gap-4 cursor-pointer"
+            onClick={() => setPostModal(true)}
+          >
             <Card className="flex w-full items-center p-2 ">
               <Image
                 src={dummyUser?.profileImg}
-                alt={dummyUser.name}
+                alt={dummyUser?.name}
                 width={50}
                 height={50}
                 className=""
@@ -94,20 +111,20 @@ const ProfileById = () => {
           </Card>
         )}
 
-        <section className="w-full flex flex-col gap-2 ">
+        <section className="w-full flex flex-col gap-2  ">
           {loading ? (
             <Card className="w-full p-6 rounded-2xl ">
               <Skeleton className="w-full rounded-2xl h-[500px] " />
             </Card>
           ) : (
-            posts.map((post, index) => {
-              return <PostCard key={index} post={post} loading={loading} />;
+            posts.map((post) => {
+              return <PostCard key={post.id} post={post} loading={loading} />;
             })
           )}
         </section>
       </div>
 
-      <div className="min-w-[300px] flex-col flex gap-6 sticky top-4 ">
+      <div className="min-w-[300px] flex-col max-xl:hidden flex gap-6 sticky top-4 ">
         {loading ? (
           <CardSkeleton length={2} />
         ) : (

@@ -39,3 +39,30 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
+
+
+
+export const MobileSidebar = () => {
+  const pathName = useStateContext()
+
+  return (
+    <section className="bg-sidebar w-[100%] h-[80px] flex flex-col gap-3  items-center ">
+      <section className="py-4 flex gap-8 w-full">
+        {sidebarView.map((item) => (
+          <Link
+            href={item.href}
+            key={item.label}
+            className={`flex w-full justify-center items-center gap-1.5 flex-col text-white transition-all  ${
+              item.href === pathName.pathName ? `border-b-[3px]  border-white` : ""
+            } `}
+          >
+            <span className="text-2xl mb ">{item.icon}</span>
+            <span className="text-[12px] text-[#C7C7C7] mb-1 ">{item.label}</span>
+            {/* <item.Icon width={28} height={28} /> */}
+          </Link>
+        ))}
+      </section>
+    </section>
+  );
+};

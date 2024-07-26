@@ -12,9 +12,19 @@ import React, { useState } from "react";
 import { Card } from "./ui/card";
 import { recentFriends } from "@/Constants/Constants";
 import { useStateContext } from "@/contexts/StateContext";
+import { makeNetworkCall } from "@/utilities/utils";
 
 const PostCard = ({ post }) => {
-  const { dummyUser } = useStateContext();
+  console.log(post);
+  const {
+    dummyUser,
+    loadingTerm,
+    setLoadingTerm,
+    setSubmitting,
+    submitting,
+    fetchPostsData,
+    editingPost,
+  } = useStateContext();
   const [actionRow, setActionRow] = useState();
 
   const toggleActionRow = (id) => {
@@ -22,6 +32,22 @@ const PostCard = ({ post }) => {
       setActionRow(null);
     } else {
       setActionRow(id);
+    }
+  };
+
+  const deletePost = async (id) => {
+    try {
+      setSubmitting(true);
+      setLoadingTerm("delete_post");
+      await makeNetworkCall(`delete/${id}`, "", "delete");
+      await fetchPostsData();
+      setLoadingTerm("");
+      setSubmitting(false);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoadingTerm("");
+      setSubmitting(false);
     }
   };
 
@@ -49,20 +75,33 @@ const PostCard = ({ post }) => {
 
         <div className="relative">
           <button
-            onClick={() => toggleActionRow(post.post_id)}
+            onClick={() => toggleActionRow(post.id)}
             className=" hover:text-gray-900"
           >
             <DotsThreeVertical size={22} />
           </button>
 
-          {actionRow === post.post_id && (
-            <div className="absolute text-sm right-0 mt-2 w-32 bg-white border rounded shadow-lg z-20">
+          {actionRow === post.id && (
+            <div className="absolute text-sm right-0 mt-2 w-32 bg-white border rounded shadow-lg z-10">
               <ul className="text-left">
                 <li className="py-2 px-4 hover:bg-gray-100 cursor-pointer">
-                  Edit
+
+                  <button 
+                    className=" w-full h-full text-left"
+                  
+                  
+                  onClick={() => editingPost(post)}> Edit</button>
                 </li>
                 <li className="py-2 px-4 hover:bg-gray-100 cursor-pointer">
-                  Delete
+                  <button
+                    onClick={() => deletePost(post.id)}
+                    disabled={submitting || loadingTerm === "delete_post"}
+
+                    className=" w-full h-full text-left"
+
+                  >
+                    {loadingTerm === "delete_post" ? "deleting..." : "delete"}
+                  </button>
                 </li>
               </ul>
             </div>
@@ -70,13 +109,11 @@ const PostCard = ({ post }) => {
         </div>
       </div>
 
-      <p className="text-sm w-full leading-6 text-[#515151]">
-        {post?.postDesc}
-      </p>
+      <p className="text-sm w-full leading-6 text-[#515151]">{post?.desc}</p>
 
       <Image
-        src={post?.postImage}
-        alt={post.postDesc || "img"}
+        src={post?.post_image}
+        alt={post.desc || "img"}
         width={100}
         height={50}
         className=" w-full max-h-[373px] rounded-lg  object-contain"
@@ -98,8 +135,8 @@ const PostCard = ({ post }) => {
       <div className="flex gap-1 w-full items-center">
         <Card className="w-full gap-3 flex max-h-10 overflow-hidden items-center p-2 rounded-3xl ">
           <Image
-            src={dummyUser.profileImg}
-            alt={dummyUser.name || "img"}
+            src={dummyUser?.profileImg}
+            alt={dummyUser?.name || "img"}
             width={30}
             height={30}
             className=" flex rounded-full  "

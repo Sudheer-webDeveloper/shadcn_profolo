@@ -28,14 +28,14 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
+    const timer = setTimeout(() => setLoading(false),0);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <section className="w-full flex-col flex gap-2">
-      <section className="flex gap-3">
-        <section className="flex flex-col items-center gap-6 pt-0 min-w-[300px] w-[296px]">
+      <section className="gap-3 max-lg:flex-col flex">
+        <section className="flex flex-col items-center gap-6 pt-0 lg:min-w-[300px] lg:w-[296px] ">
           {loading ? (
             <>
               <Skeleton className="bg-white w-full p-6">
@@ -61,7 +61,7 @@ export default function Home() {
                   {loading ? (
                     <Skeleton className="w-full h-4" />
                   ) : (
-                    <Progress value={dummyUser.profileComplete} className="" />
+                    <Progress value={dummyUser?.profileComplete} className="" />
                   )}
                 </div>
 
@@ -82,7 +82,7 @@ export default function Home() {
                   ))}
 
                   <span className="bg-sidebar text-white mt-3 inline-block w-full text-center px-2 py-1.5 text-[16px] rounded-sm">
-                    Verification Report
+                    Complete Profile
                   </span>
                 </div>
               </Card>
@@ -90,7 +90,7 @@ export default function Home() {
           )}
         </section>
 
-        <Card className="w-full p-6 h-full flex flex-col gap-8">
+        <Card className="w-full  lg:p-6 p-3 h-full flex flex-col gap-8">
           <DashboardCards loading={loading} />
           <DashboardTable loading={loading} />
         </Card>
@@ -101,9 +101,9 @@ export default function Home() {
 
 const DashboardCards = ({ loading }) => {
   return (
-    <section className="flex gap-6 w-full">
+    <section className="flex gap-6 w-full lg:flex-nowrap flex-wrap ">
       {dashboardCards.map((card) => (
-        <Card key={card.label} className="flex flex-col  gap-1 p-2 w-[35%]">
+        <Card key={card.label} className="flex flex-col  gap-1 p-2 w-[35%] max-lg:w-[100%]">
           {loading ? (
             <FakeSkeleton />
           ) : (
