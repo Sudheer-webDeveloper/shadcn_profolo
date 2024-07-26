@@ -2,16 +2,10 @@
 import React, { useState, useEffect } from "react";
 import ProfileCard from "@/components/ProfileCard";
 import { useStateContext } from "@/contexts/StateContext";
-import imageCompression from "browser-image-compression"; // Importing image compression library
-import { LinkPreview } from "react-link-preview";
 import { Card } from "@/components/ui/card";
-import {
-  peopleYouMayKnow,
-  postBy,
-  recentFriends,
-  sugesstedFollows,
-  sugesstedJobs,
-} from "@/Constants/Constants";
+import peopleYouMayKnow from "../../../config/peopleYouMayKnow.json";
+import sugesstedFollows from "../../../config/SuggestedFollows.json";
+import sugesstedJobs from "../../../config/SuggestedJobs.json";
 import { Button } from "@/components/ui/button";
 import ArrayOfCards from "@/components/ArrayOfCards";
 import Image from "next/image";
@@ -19,13 +13,10 @@ import { FirstAidKit, Link } from "phosphor-react/dist";
 import PostCard from "@/components/PostCard";
 import { FakeSkeleton } from "@/app/page";
 import { Skeleton } from "@/components/ui/skeleton";
-import { X, Image as Kinder } from "lucide-react";
-import { makeNetworkCall } from "@/utilities/utils";
 
 const ProfileById = () => {
   const { dummyUser, setPostModal, posts, fetchPostsData } = useStateContext();
   const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
     const fetching = async () => {
@@ -67,7 +58,11 @@ const ProfileById = () => {
               Didn't find what you were looking for?
             </h2>
 
-            <Button variant="default" className="text-white w-[130px] " aria-label="Contact Us">
+            <Button
+              variant="default"
+              className="text-white w-[130px] "
+              aria-label="Contact Us"
+            >
               Contact Us
             </Button>
           </Card>

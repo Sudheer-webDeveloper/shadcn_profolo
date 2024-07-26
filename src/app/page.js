@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardDescription,
@@ -10,18 +9,16 @@ import {
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowDownRight, Plus, WarningCircle } from "phosphor-react";
-import SortableTable from "@/components/SortedTable";
-import {
-  dashboardCards,
-  dummyData,
-  columns,
-  checkbox_verifications,
-} from "@/Constants/Constants";
+import checkbox_verifications from '../config/checkBoxVerifications.json'
 import ProfileCard from "@/components/ProfileCard";
 import { useStateContext } from "@/contexts/StateContext";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CardSkeleton } from "./profile/[profileId]/page";
+import DashboardCards from "@/components/DashboardCards";
+import DashboardTable from "@/components/DashboardTable";
+
+
+
 
 export default function Home() {
   const { dummyUser } = useStateContext();
@@ -98,93 +95,6 @@ export default function Home() {
     </section>
   );
 }
-
-const DashboardCards = ({ loading }) => {
-  return (
-    <section className="flex gap-6 w-full lg:flex-nowrap flex-wrap ">
-      {dashboardCards.map((card) => (
-        <Card key={card.label} className="flex flex-col  gap-1 p-2 w-[35%] max-lg:w-[100%]">
-          {loading ? (
-            <FakeSkeleton />
-          ) : (
-            <>
-              <div className="p-2 py-3 flex gap-3 items-center">
-                <span
-                  style={{
-                    backgroundColor: card.bg,
-                    color: card.color,
-                  }}
-                  className={`w-10 h-10 rounded-lg flex justify-center items-center`}
-                >
-                  {card?.icon}
-                </span>
-
-                <span className="text-semibold text-lg">{card?.label}</span>
-              </div>
-
-              <div className="p-2 py-3 flex justify-between">
-                <h1 className="text-2xl font-medium ml-2">{card?.count}</h1>
-
-                <div className="flex flex-col">
-                  <h2
-                    className={`flex text-[12px] gap-1`}
-                    style={{
-                      color: card.color,
-                    }}
-                  >
-                    <span>
-                      <ArrowDownRight size={20} />
-                    </span>{" "}
-                    <span> {card?.percentage}</span>
-                  </h2>
-                  <span className="text-[#8A8A8A] text-[12px]">
-                    Since last {card?.inDays} Days
-                  </span>
-                </div>
-              </div>
-            </>
-          )}
-        </Card>
-      ))}
-    </section>
-  );
-};
-
-const DashboardTable = ({ loading }) => {
-  return (
-    <section className="flex w-full gap-3 flex-col">
-      {loading ? (
-        <div className="flex w-full justify-between">
-          <Skeleton className="w-[100px] h-10" />
-          <Skeleton className="w-[100px] h-10" />
-        </div>
-      ) : (
-        <div className="flex_between w-full">
-          <h6 className="flex_center gap-2">
-            Job Postings
-            <WarningCircle size={20} className="text-[#8A8A8A]" />
-          </h6>
-
-          <Button
-            variant="default"
-            className="text-white max-h-9 flex_center gap-1 font-medium"
-          >
-            <Plus size={20} className="mr-1" />
-            Post Job
-          </Button>
-        </div>
-      )}
-
-      <div className="w-full">
-        {loading ? (
-          <Skeleton className="w-full h-[60vh]" /> // Skeleton for table
-        ) : (
-          <SortableTable data={dummyData || []} columns={columns} />
-        )}
-      </div>
-    </section>
-  );
-};
 
 export const FakeSkeleton = () => {
   return (

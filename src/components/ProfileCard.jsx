@@ -1,4 +1,4 @@
-import { useStateContext } from "@/contexts/StateContext";
+
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { MapPin } from "phosphor-react/dist";

@@ -70,7 +70,7 @@ const SortableTable = ({ columns, data }) => {
                         <CaretDown />
                       )
                     ) : (
-                      // Show initial arrows indicating sortable columns
+                     
                       <CaretUp />
                     )}
                     {/* </span> */}
@@ -86,7 +86,7 @@ const SortableTable = ({ columns, data }) => {
           <tbody>
             {sortedData.map((item, index) => (
               <tr
-                key={index}
+                key={item.id}
                 className={
                   index % 2 === 1 ? "bg-[#F1F1F1]" : "bg-white" // Alternate row coloring
                 }

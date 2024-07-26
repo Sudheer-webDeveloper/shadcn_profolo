@@ -3,12 +3,11 @@ import React, { useState, useEffect } from "react";
 import { X, Image as Kinder } from "lucide-react";
 import { Button } from "./ui/button";
 import Image from "next/image";
-import imageCompression from "browser-image-compression"; // Importing image compression library
-import { LinkPreview } from "react-link-preview";
+import imageCompression from "browser-image-compression"; 
 import { useStateContext } from "@/contexts/StateContext";
 import ProfileCard from "./ProfileCard";
 import { makeNetworkCall } from "@/utilities/utils";
-import { postBy } from "@/Constants/Constants";
+
 
 const urlRegex = /(https?:\/\/[^\s]+)/g;
 

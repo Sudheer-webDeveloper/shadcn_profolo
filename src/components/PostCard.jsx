@@ -10,12 +10,13 @@ import {
 } from "phosphor-react/dist";
 import React, { useState } from "react";
 import { Card } from "./ui/card";
-import { recentFriends } from "@/Constants/Constants";
+
+import recentFriends from '../config/RecentFriends.json'
 import { useStateContext } from "@/contexts/StateContext";
 import { makeNetworkCall } from "@/utilities/utils";
 
 const PostCard = ({ post }) => {
-  console.log(post);
+
   const {
     dummyUser,
     loadingTerm,
@@ -56,13 +57,13 @@ const PostCard = ({ post }) => {
       <div className="post_by flex justify-between">
         <div>
           <div className="flex gap-2 items-start">
-            <Image
+            {/* <Image
               src={post?.profileImg}
               alt={post.personName || "img"}
               width={50}
               height={50}
               className="h-[50px] w-[50px]  object-contain"
-            />
+            /> */}
 
             <div className="flex text-sm flex-col gap-1">
               <span className="font-light">{post.personName}</span>
@@ -153,8 +154,9 @@ const PostCard = ({ post }) => {
 
         <div className="flex -space-x-2 overflow-hidden w-1/5 ">
           {recentFriends.map((item) => (
+          
             <Image
-              src={item.img}
+              src={`/assets/${item.img} `}
               alt={item.name}
               key={item.name}
               height={40}
